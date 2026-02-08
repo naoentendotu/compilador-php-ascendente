@@ -1,0 +1,1192 @@
+State 4 conflicts: 1 shift/reduce
+State 61 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: PHP_OPEN corpo PHP_CLOSE
+
+    2 corpo: lista_dc lista_comandos
+
+    3 lista_dc: ε
+    4         | lista_dc declaracao
+
+    5 declaracao: dc_v
+    6           | dc_f
+
+    7 dc_v: DOLLAR_IDENT ASSIGN expressao SEMI
+    8     | DOLLAR_IDENT SEMI
+
+    9 dc_f: FUNCTION IDENT parametros LBRACE corpo_f RBRACE
+
+   10 parametros: LPAREN lista_par RPAREN
+   11           | LPAREN RPAREN
+
+   12 lista_par: DOLLAR_IDENT mais_par
+
+   13 mais_par: COMMA DOLLAR_IDENT mais_par
+   14         | ε
+
+   15 corpo_f: lista_dcloc lista_comandos
+
+   16 lista_dcloc: ε
+   17            | lista_dcloc dc_v
+
+   18 lista_comandos: ε
+   19               | lista_comandos comando
+
+   20 comando: DOLLAR_IDENT ASSIGN expressao SEMI
+   21        | ECHO DOLLAR_IDENT DOT PHP_EOL SEMI
+   22        | IF LPAREN condicao RPAREN LBRACE lista_comandos RBRACE pfalsa
+   23        | WHILE LPAREN condicao RPAREN LBRACE lista_comandos RBRACE
+   24        | IDENT lista_arg SEMI
+
+   25 pfalsa: ELSE LBRACE lista_comandos RBRACE
+   26       | ε
+
+   27 lista_arg: LPAREN argumentos RPAREN
+   28          | LPAREN RPAREN
+
+   29 argumentos: expressao mais_ident
+
+   30 mais_ident: COMMA expressao mais_ident
+   31           | ε
+
+   32 condicao: expressao relacao expressao
+
+   33 relacao: EQ
+   34        | NE
+   35        | GE
+   36        | LE
+   37        | GT
+   38        | LT
+
+   39 expressao: termo outros_termos
+
+   40 termo: op_un fator mais_fatores
+
+   41 op_un: MINUS
+   42      | ε
+
+   43 fator: DOLLAR_IDENT
+   44      | NUM_REAL
+   45      | LPAREN expressao RPAREN
+   46      | FLOATVAL LPAREN READLINE LPAREN RPAREN RPAREN
+
+   47 outros_termos: op_ad termo outros_termos
+   48              | ε
+
+   49 op_ad: PLUS
+   50      | MINUS
+
+   51 mais_fatores: op_mul fator mais_fatores
+   52             | ε
+
+   53 op_mul: STAR
+   54       | SLASH
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    PHP_OPEN (258) 1
+    PHP_CLOSE (259) 1
+    FUNCTION (260) 9
+    IF (261) 22
+    ELSE (262) 25
+    WHILE (263) 23
+    ECHO (264) 21
+    FLOATVAL (265) 46
+    READLINE (266) 46
+    PHP_EOL (267) 21
+    DOLLAR_IDENT (268) 7 8 12 13 20 21 43
+    IDENT (269) 9 24
+    NUM_REAL (270) 44
+    LPAREN (271) 10 11 22 23 27 28 45 46
+    RPAREN (272) 10 11 22 23 27 28 45 46
+    LBRACE (273) 9 22 23 25
+    RBRACE (274) 9 22 23 25
+    COMMA (275) 13 30
+    SEMI (276) 7 8 20 21 24
+    DOT (277) 21
+    ASSIGN (278) 7 20
+    EQ (279) 33
+    NE (280) 34
+    GE (281) 35
+    LE (282) 36
+    GT (283) 37
+    LT (284) 38
+    PLUS (285) 49
+    MINUS (286) 41 50
+    STAR (287) 53
+    SLASH (288) 54
+    UMINUS (289)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (35)
+        on left: 0
+    programa (36)
+        on left: 1
+        on right: 0
+    corpo (37)
+        on left: 2
+        on right: 1
+    lista_dc (38)
+        on left: 3 4
+        on right: 2 4
+    declaracao (39)
+        on left: 5 6
+        on right: 4
+    dc_v (40)
+        on left: 7 8
+        on right: 5 17
+    dc_f (41)
+        on left: 9
+        on right: 6
+    parametros (42)
+        on left: 10 11
+        on right: 9
+    lista_par (43)
+        on left: 12
+        on right: 10
+    mais_par (44)
+        on left: 13 14
+        on right: 12 13
+    corpo_f (45)
+        on left: 15
+        on right: 9
+    lista_dcloc (46)
+        on left: 16 17
+        on right: 15 17
+    lista_comandos (47)
+        on left: 18 19
+        on right: 2 15 19 22 23 25
+    comando (48)
+        on left: 20 21 22 23 24
+        on right: 19
+    pfalsa (49)
+        on left: 25 26
+        on right: 22
+    lista_arg (50)
+        on left: 27 28
+        on right: 24
+    argumentos (51)
+        on left: 29
+        on right: 27
+    mais_ident (52)
+        on left: 30 31
+        on right: 29 30
+    condicao (53)
+        on left: 32
+        on right: 22 23
+    relacao (54)
+        on left: 33 34 35 36 37 38
+        on right: 32
+    expressao (55)
+        on left: 39
+        on right: 7 20 29 30 32 45
+    termo (56)
+        on left: 40
+        on right: 39 47
+    op_un (57)
+        on left: 41 42
+        on right: 40
+    fator (58)
+        on left: 43 44 45 46
+        on right: 40 51
+    outros_termos (59)
+        on left: 47 48
+        on right: 39 47
+    op_ad (60)
+        on left: 49 50
+        on right: 47
+    mais_fatores (61)
+        on left: 51 52
+        on right: 40 51
+    op_mul (62)
+        on left: 53 54
+        on right: 51
+
+
+State 0
+
+    0 $accept: • programa $end
+
+    PHP_OPEN  shift, and go to state 1
+
+    programa  go to state 2
+
+
+State 1
+
+    1 programa: PHP_OPEN • corpo PHP_CLOSE
+
+    $default  reduce using rule 3 (lista_dc)
+
+    corpo     go to state 3
+    lista_dc  go to state 4
+
+
+State 2
+
+    0 $accept: programa • $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 programa: PHP_OPEN corpo • PHP_CLOSE
+
+    PHP_CLOSE  shift, and go to state 6
+
+
+State 4
+
+    2 corpo: lista_dc • lista_comandos
+    4 lista_dc: lista_dc • declaracao
+
+    FUNCTION      shift, and go to state 7
+    DOLLAR_IDENT  shift, and go to state 8
+
+    DOLLAR_IDENT  [reduce using rule 18 (lista_comandos)]
+    $default      reduce using rule 18 (lista_comandos)
+
+    declaracao      go to state 9
+    dc_v            go to state 10
+    dc_f            go to state 11
+    lista_comandos  go to state 12
+
+
+State 5
+
+    0 $accept: programa $end •
+
+    $default  accept
+
+
+State 6
+
+    1 programa: PHP_OPEN corpo PHP_CLOSE •
+
+    $default  reduce using rule 1 (programa)
+
+
+State 7
+
+    9 dc_f: FUNCTION • IDENT parametros LBRACE corpo_f RBRACE
+
+    IDENT  shift, and go to state 13
+
+
+State 8
+
+    7 dc_v: DOLLAR_IDENT • ASSIGN expressao SEMI
+    8     | DOLLAR_IDENT • SEMI
+
+    SEMI    shift, and go to state 14
+    ASSIGN  shift, and go to state 15
+
+
+State 9
+
+    4 lista_dc: lista_dc declaracao •
+
+    $default  reduce using rule 4 (lista_dc)
+
+
+State 10
+
+    5 declaracao: dc_v •
+
+    $default  reduce using rule 5 (declaracao)
+
+
+State 11
+
+    6 declaracao: dc_f •
+
+    $default  reduce using rule 6 (declaracao)
+
+
+State 12
+
+    2 corpo: lista_dc lista_comandos •
+   19 lista_comandos: lista_comandos • comando
+
+    IF            shift, and go to state 16
+    WHILE         shift, and go to state 17
+    ECHO          shift, and go to state 18
+    DOLLAR_IDENT  shift, and go to state 19
+    IDENT         shift, and go to state 20
+
+    $default  reduce using rule 2 (corpo)
+
+    comando  go to state 21
+
+
+State 13
+
+    9 dc_f: FUNCTION IDENT • parametros LBRACE corpo_f RBRACE
+
+    LPAREN  shift, and go to state 22
+
+    parametros  go to state 23
+
+
+State 14
+
+    8 dc_v: DOLLAR_IDENT SEMI •
+
+    $default  reduce using rule 8 (dc_v)
+
+
+State 15
+
+    7 dc_v: DOLLAR_IDENT ASSIGN • expressao SEMI
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    expressao  go to state 25
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 16
+
+   22 comando: IF • LPAREN condicao RPAREN LBRACE lista_comandos RBRACE pfalsa
+
+    LPAREN  shift, and go to state 28
+
+
+State 17
+
+   23 comando: WHILE • LPAREN condicao RPAREN LBRACE lista_comandos RBRACE
+
+    LPAREN  shift, and go to state 29
+
+
+State 18
+
+   21 comando: ECHO • DOLLAR_IDENT DOT PHP_EOL SEMI
+
+    DOLLAR_IDENT  shift, and go to state 30
+
+
+State 19
+
+   20 comando: DOLLAR_IDENT • ASSIGN expressao SEMI
+
+    ASSIGN  shift, and go to state 31
+
+
+State 20
+
+   24 comando: IDENT • lista_arg SEMI
+
+    LPAREN  shift, and go to state 32
+
+    lista_arg  go to state 33
+
+
+State 21
+
+   19 lista_comandos: lista_comandos comando •
+
+    $default  reduce using rule 19 (lista_comandos)
+
+
+State 22
+
+   10 parametros: LPAREN • lista_par RPAREN
+   11           | LPAREN • RPAREN
+
+    DOLLAR_IDENT  shift, and go to state 34
+    RPAREN        shift, and go to state 35
+
+    lista_par  go to state 36
+
+
+State 23
+
+    9 dc_f: FUNCTION IDENT parametros • LBRACE corpo_f RBRACE
+
+    LBRACE  shift, and go to state 37
+
+
+State 24
+
+   41 op_un: MINUS •
+
+    $default  reduce using rule 41 (op_un)
+
+
+State 25
+
+    7 dc_v: DOLLAR_IDENT ASSIGN expressao • SEMI
+
+    SEMI  shift, and go to state 38
+
+
+State 26
+
+   39 expressao: termo • outros_termos
+
+    PLUS   shift, and go to state 39
+    MINUS  shift, and go to state 40
+
+    $default  reduce using rule 48 (outros_termos)
+
+    outros_termos  go to state 41
+    op_ad          go to state 42
+
+
+State 27
+
+   40 termo: op_un • fator mais_fatores
+
+    FLOATVAL      shift, and go to state 43
+    DOLLAR_IDENT  shift, and go to state 44
+    NUM_REAL      shift, and go to state 45
+    LPAREN        shift, and go to state 46
+
+    fator  go to state 47
+
+
+State 28
+
+   22 comando: IF LPAREN • condicao RPAREN LBRACE lista_comandos RBRACE pfalsa
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    condicao   go to state 48
+    expressao  go to state 49
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 29
+
+   23 comando: WHILE LPAREN • condicao RPAREN LBRACE lista_comandos RBRACE
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    condicao   go to state 50
+    expressao  go to state 49
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 30
+
+   21 comando: ECHO DOLLAR_IDENT • DOT PHP_EOL SEMI
+
+    DOT  shift, and go to state 51
+
+
+State 31
+
+   20 comando: DOLLAR_IDENT ASSIGN • expressao SEMI
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    expressao  go to state 52
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 32
+
+   27 lista_arg: LPAREN • argumentos RPAREN
+   28          | LPAREN • RPAREN
+
+    RPAREN  shift, and go to state 53
+    MINUS   shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    argumentos  go to state 54
+    expressao   go to state 55
+    termo       go to state 26
+    op_un       go to state 27
+
+
+State 33
+
+   24 comando: IDENT lista_arg • SEMI
+
+    SEMI  shift, and go to state 56
+
+
+State 34
+
+   12 lista_par: DOLLAR_IDENT • mais_par
+
+    COMMA  shift, and go to state 57
+
+    $default  reduce using rule 14 (mais_par)
+
+    mais_par  go to state 58
+
+
+State 35
+
+   11 parametros: LPAREN RPAREN •
+
+    $default  reduce using rule 11 (parametros)
+
+
+State 36
+
+   10 parametros: LPAREN lista_par • RPAREN
+
+    RPAREN  shift, and go to state 59
+
+
+State 37
+
+    9 dc_f: FUNCTION IDENT parametros LBRACE • corpo_f RBRACE
+
+    $default  reduce using rule 16 (lista_dcloc)
+
+    corpo_f      go to state 60
+    lista_dcloc  go to state 61
+
+
+State 38
+
+    7 dc_v: DOLLAR_IDENT ASSIGN expressao SEMI •
+
+    $default  reduce using rule 7 (dc_v)
+
+
+State 39
+
+   49 op_ad: PLUS •
+
+    $default  reduce using rule 49 (op_ad)
+
+
+State 40
+
+   50 op_ad: MINUS •
+
+    $default  reduce using rule 50 (op_ad)
+
+
+State 41
+
+   39 expressao: termo outros_termos •
+
+    $default  reduce using rule 39 (expressao)
+
+
+State 42
+
+   47 outros_termos: op_ad • termo outros_termos
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    termo  go to state 62
+    op_un  go to state 27
+
+
+State 43
+
+   46 fator: FLOATVAL • LPAREN READLINE LPAREN RPAREN RPAREN
+
+    LPAREN  shift, and go to state 63
+
+
+State 44
+
+   43 fator: DOLLAR_IDENT •
+
+    $default  reduce using rule 43 (fator)
+
+
+State 45
+
+   44 fator: NUM_REAL •
+
+    $default  reduce using rule 44 (fator)
+
+
+State 46
+
+   45 fator: LPAREN • expressao RPAREN
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    expressao  go to state 64
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 47
+
+   40 termo: op_un fator • mais_fatores
+
+    STAR   shift, and go to state 65
+    SLASH  shift, and go to state 66
+
+    $default  reduce using rule 52 (mais_fatores)
+
+    mais_fatores  go to state 67
+    op_mul        go to state 68
+
+
+State 48
+
+   22 comando: IF LPAREN condicao • RPAREN LBRACE lista_comandos RBRACE pfalsa
+
+    RPAREN  shift, and go to state 69
+
+
+State 49
+
+   32 condicao: expressao • relacao expressao
+
+    EQ  shift, and go to state 70
+    NE  shift, and go to state 71
+    GE  shift, and go to state 72
+    LE  shift, and go to state 73
+    GT  shift, and go to state 74
+    LT  shift, and go to state 75
+
+    relacao  go to state 76
+
+
+State 50
+
+   23 comando: WHILE LPAREN condicao • RPAREN LBRACE lista_comandos RBRACE
+
+    RPAREN  shift, and go to state 77
+
+
+State 51
+
+   21 comando: ECHO DOLLAR_IDENT DOT • PHP_EOL SEMI
+
+    PHP_EOL  shift, and go to state 78
+
+
+State 52
+
+   20 comando: DOLLAR_IDENT ASSIGN expressao • SEMI
+
+    SEMI  shift, and go to state 79
+
+
+State 53
+
+   28 lista_arg: LPAREN RPAREN •
+
+    $default  reduce using rule 28 (lista_arg)
+
+
+State 54
+
+   27 lista_arg: LPAREN argumentos • RPAREN
+
+    RPAREN  shift, and go to state 80
+
+
+State 55
+
+   29 argumentos: expressao • mais_ident
+
+    COMMA  shift, and go to state 81
+
+    $default  reduce using rule 31 (mais_ident)
+
+    mais_ident  go to state 82
+
+
+State 56
+
+   24 comando: IDENT lista_arg SEMI •
+
+    $default  reduce using rule 24 (comando)
+
+
+State 57
+
+   13 mais_par: COMMA • DOLLAR_IDENT mais_par
+
+    DOLLAR_IDENT  shift, and go to state 83
+
+
+State 58
+
+   12 lista_par: DOLLAR_IDENT mais_par •
+
+    $default  reduce using rule 12 (lista_par)
+
+
+State 59
+
+   10 parametros: LPAREN lista_par RPAREN •
+
+    $default  reduce using rule 10 (parametros)
+
+
+State 60
+
+    9 dc_f: FUNCTION IDENT parametros LBRACE corpo_f • RBRACE
+
+    RBRACE  shift, and go to state 84
+
+
+State 61
+
+   15 corpo_f: lista_dcloc • lista_comandos
+   17 lista_dcloc: lista_dcloc • dc_v
+
+    DOLLAR_IDENT  shift, and go to state 8
+
+    DOLLAR_IDENT  [reduce using rule 18 (lista_comandos)]
+    $default      reduce using rule 18 (lista_comandos)
+
+    dc_v            go to state 85
+    lista_comandos  go to state 86
+
+
+State 62
+
+   47 outros_termos: op_ad termo • outros_termos
+
+    PLUS   shift, and go to state 39
+    MINUS  shift, and go to state 40
+
+    $default  reduce using rule 48 (outros_termos)
+
+    outros_termos  go to state 87
+    op_ad          go to state 42
+
+
+State 63
+
+   46 fator: FLOATVAL LPAREN • READLINE LPAREN RPAREN RPAREN
+
+    READLINE  shift, and go to state 88
+
+
+State 64
+
+   45 fator: LPAREN expressao • RPAREN
+
+    RPAREN  shift, and go to state 89
+
+
+State 65
+
+   53 op_mul: STAR •
+
+    $default  reduce using rule 53 (op_mul)
+
+
+State 66
+
+   54 op_mul: SLASH •
+
+    $default  reduce using rule 54 (op_mul)
+
+
+State 67
+
+   40 termo: op_un fator mais_fatores •
+
+    $default  reduce using rule 40 (termo)
+
+
+State 68
+
+   51 mais_fatores: op_mul • fator mais_fatores
+
+    FLOATVAL      shift, and go to state 43
+    DOLLAR_IDENT  shift, and go to state 44
+    NUM_REAL      shift, and go to state 45
+    LPAREN        shift, and go to state 46
+
+    fator  go to state 90
+
+
+State 69
+
+   22 comando: IF LPAREN condicao RPAREN • LBRACE lista_comandos RBRACE pfalsa
+
+    LBRACE  shift, and go to state 91
+
+
+State 70
+
+   33 relacao: EQ •
+
+    $default  reduce using rule 33 (relacao)
+
+
+State 71
+
+   34 relacao: NE •
+
+    $default  reduce using rule 34 (relacao)
+
+
+State 72
+
+   35 relacao: GE •
+
+    $default  reduce using rule 35 (relacao)
+
+
+State 73
+
+   36 relacao: LE •
+
+    $default  reduce using rule 36 (relacao)
+
+
+State 74
+
+   37 relacao: GT •
+
+    $default  reduce using rule 37 (relacao)
+
+
+State 75
+
+   38 relacao: LT •
+
+    $default  reduce using rule 38 (relacao)
+
+
+State 76
+
+   32 condicao: expressao relacao • expressao
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    expressao  go to state 92
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 77
+
+   23 comando: WHILE LPAREN condicao RPAREN • LBRACE lista_comandos RBRACE
+
+    LBRACE  shift, and go to state 93
+
+
+State 78
+
+   21 comando: ECHO DOLLAR_IDENT DOT PHP_EOL • SEMI
+
+    SEMI  shift, and go to state 94
+
+
+State 79
+
+   20 comando: DOLLAR_IDENT ASSIGN expressao SEMI •
+
+    $default  reduce using rule 20 (comando)
+
+
+State 80
+
+   27 lista_arg: LPAREN argumentos RPAREN •
+
+    $default  reduce using rule 27 (lista_arg)
+
+
+State 81
+
+   30 mais_ident: COMMA • expressao mais_ident
+
+    MINUS  shift, and go to state 24
+
+    $default  reduce using rule 42 (op_un)
+
+    expressao  go to state 95
+    termo      go to state 26
+    op_un      go to state 27
+
+
+State 82
+
+   29 argumentos: expressao mais_ident •
+
+    $default  reduce using rule 29 (argumentos)
+
+
+State 83
+
+   13 mais_par: COMMA DOLLAR_IDENT • mais_par
+
+    COMMA  shift, and go to state 57
+
+    $default  reduce using rule 14 (mais_par)
+
+    mais_par  go to state 96
+
+
+State 84
+
+    9 dc_f: FUNCTION IDENT parametros LBRACE corpo_f RBRACE •
+
+    $default  reduce using rule 9 (dc_f)
+
+
+State 85
+
+   17 lista_dcloc: lista_dcloc dc_v •
+
+    $default  reduce using rule 17 (lista_dcloc)
+
+
+State 86
+
+   15 corpo_f: lista_dcloc lista_comandos •
+   19 lista_comandos: lista_comandos • comando
+
+    IF            shift, and go to state 16
+    WHILE         shift, and go to state 17
+    ECHO          shift, and go to state 18
+    DOLLAR_IDENT  shift, and go to state 19
+    IDENT         shift, and go to state 20
+
+    $default  reduce using rule 15 (corpo_f)
+
+    comando  go to state 21
+
+
+State 87
+
+   47 outros_termos: op_ad termo outros_termos •
+
+    $default  reduce using rule 47 (outros_termos)
+
+
+State 88
+
+   46 fator: FLOATVAL LPAREN READLINE • LPAREN RPAREN RPAREN
+
+    LPAREN  shift, and go to state 97
+
+
+State 89
+
+   45 fator: LPAREN expressao RPAREN •
+
+    $default  reduce using rule 45 (fator)
+
+
+State 90
+
+   51 mais_fatores: op_mul fator • mais_fatores
+
+    STAR   shift, and go to state 65
+    SLASH  shift, and go to state 66
+
+    $default  reduce using rule 52 (mais_fatores)
+
+    mais_fatores  go to state 98
+    op_mul        go to state 68
+
+
+State 91
+
+   22 comando: IF LPAREN condicao RPAREN LBRACE • lista_comandos RBRACE pfalsa
+
+    $default  reduce using rule 18 (lista_comandos)
+
+    lista_comandos  go to state 99
+
+
+State 92
+
+   32 condicao: expressao relacao expressao •
+
+    $default  reduce using rule 32 (condicao)
+
+
+State 93
+
+   23 comando: WHILE LPAREN condicao RPAREN LBRACE • lista_comandos RBRACE
+
+    $default  reduce using rule 18 (lista_comandos)
+
+    lista_comandos  go to state 100
+
+
+State 94
+
+   21 comando: ECHO DOLLAR_IDENT DOT PHP_EOL SEMI •
+
+    $default  reduce using rule 21 (comando)
+
+
+State 95
+
+   30 mais_ident: COMMA expressao • mais_ident
+
+    COMMA  shift, and go to state 81
+
+    $default  reduce using rule 31 (mais_ident)
+
+    mais_ident  go to state 101
+
+
+State 96
+
+   13 mais_par: COMMA DOLLAR_IDENT mais_par •
+
+    $default  reduce using rule 13 (mais_par)
+
+
+State 97
+
+   46 fator: FLOATVAL LPAREN READLINE LPAREN • RPAREN RPAREN
+
+    RPAREN  shift, and go to state 102
+
+
+State 98
+
+   51 mais_fatores: op_mul fator mais_fatores •
+
+    $default  reduce using rule 51 (mais_fatores)
+
+
+State 99
+
+   19 lista_comandos: lista_comandos • comando
+   22 comando: IF LPAREN condicao RPAREN LBRACE lista_comandos • RBRACE pfalsa
+
+    IF            shift, and go to state 16
+    WHILE         shift, and go to state 17
+    ECHO          shift, and go to state 18
+    DOLLAR_IDENT  shift, and go to state 19
+    IDENT         shift, and go to state 20
+    RBRACE        shift, and go to state 103
+
+    comando  go to state 21
+
+
+State 100
+
+   19 lista_comandos: lista_comandos • comando
+   23 comando: WHILE LPAREN condicao RPAREN LBRACE lista_comandos • RBRACE
+
+    IF            shift, and go to state 16
+    WHILE         shift, and go to state 17
+    ECHO          shift, and go to state 18
+    DOLLAR_IDENT  shift, and go to state 19
+    IDENT         shift, and go to state 20
+    RBRACE        shift, and go to state 104
+
+    comando  go to state 21
+
+
+State 101
+
+   30 mais_ident: COMMA expressao mais_ident •
+
+    $default  reduce using rule 30 (mais_ident)
+
+
+State 102
+
+   46 fator: FLOATVAL LPAREN READLINE LPAREN RPAREN • RPAREN
+
+    RPAREN  shift, and go to state 105
+
+
+State 103
+
+   22 comando: IF LPAREN condicao RPAREN LBRACE lista_comandos RBRACE • pfalsa
+
+    ELSE  shift, and go to state 106
+
+    $default  reduce using rule 26 (pfalsa)
+
+    pfalsa  go to state 107
+
+
+State 104
+
+   23 comando: WHILE LPAREN condicao RPAREN LBRACE lista_comandos RBRACE •
+
+    $default  reduce using rule 23 (comando)
+
+
+State 105
+
+   46 fator: FLOATVAL LPAREN READLINE LPAREN RPAREN RPAREN •
+
+    $default  reduce using rule 46 (fator)
+
+
+State 106
+
+   25 pfalsa: ELSE • LBRACE lista_comandos RBRACE
+
+    LBRACE  shift, and go to state 108
+
+
+State 107
+
+   22 comando: IF LPAREN condicao RPAREN LBRACE lista_comandos RBRACE pfalsa •
+
+    $default  reduce using rule 22 (comando)
+
+
+State 108
+
+   25 pfalsa: ELSE LBRACE • lista_comandos RBRACE
+
+    $default  reduce using rule 18 (lista_comandos)
+
+    lista_comandos  go to state 109
+
+
+State 109
+
+   19 lista_comandos: lista_comandos • comando
+   25 pfalsa: ELSE LBRACE lista_comandos • RBRACE
+
+    IF            shift, and go to state 16
+    WHILE         shift, and go to state 17
+    ECHO          shift, and go to state 18
+    DOLLAR_IDENT  shift, and go to state 19
+    IDENT         shift, and go to state 20
+    RBRACE        shift, and go to state 110
+
+    comando  go to state 21
+
+
+State 110
+
+   25 pfalsa: ELSE LBRACE lista_comandos RBRACE •
+
+    $default  reduce using rule 25 (pfalsa)

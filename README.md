@@ -1,0 +1,54 @@
+# Compilador PHP (Ascendente / LR) + Máquina Virtual (Stack Machine)
+
+Este projeto implementa:
+
+1. **Compilador**: Léxico + sintático LR + semântico + geração de código objeto.
+2. **Máquina Virtual**: Lê o arquivo de código objeto e executa as instruções.
+
+## Requisitos
+
+- **Node.js**: Recomendado v18 ou superior.
+
+> [!NOTE]
+> **Não é obrigatório ter Bison** para executar, pois o projeto já inclui `outputs/lr_table.json`. O Bison só é necessário caso queira regenerar a tabela LR.
+
+## Estrutura
+
+- `src/`: Código-fonte do compilador e da VM.
+- `inputs/`: Exemplos de programas de entrada.
+- `outputs/`: Saída do compilador (código objeto) e tabela LR.
+- `grammar/`: Definição da gramática (opcional para execução).
+- `tools/`: Script para converter `grammar.output` em `lr_table.json` (opcional).
+
+---
+
+# Parte 1 — Compilar (Gerar código objeto)
+
+## 1) Compilar um programa de entrada
+
+Na raiz do projeto, execute:
+
+```bash
+node src/MainCompile.js inputs/correto.php.txt
+
+```
+
+Isso gera o arquivo de saída:
+`outputs/codigo.obj.txt`
+
+---
+
+# Parte 2 — Executar (VM)
+
+## 2) Executar o código objeto
+
+A VM lê números da entrada padrão (**stdin**). Exemplo de execução passando valores:
+
+```bash
+echo "10 8 6 4 2" | node src/VM.js outputs/codigo.obj.txt
+
+```
+
+A saída será impressa diretamente no console.
+
+---

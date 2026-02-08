@@ -1,0 +1,1581 @@
+{
+  "rules": [
+    {
+      "lhs": "$accept",
+      "rhs": [
+        "programa",
+        "$end"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "programa",
+      "rhs": [
+        "PHP_OPEN",
+        "corpo",
+        "PHP_CLOSE"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "corpo",
+      "rhs": [
+        "lista_dc",
+        "lista_comandos"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "lista_dc",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "lista_dc",
+      "rhs": [
+        "lista_dc",
+        "declaracao"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "declaracao",
+      "rhs": [
+        "dc_v"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "declaracao",
+      "rhs": [
+        "dc_f"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "dc_v",
+      "rhs": [
+        "DOLLAR_IDENT",
+        "ASSIGN",
+        "expressao",
+        "SEMI"
+      ],
+      "rhsLen": 4
+    },
+    {
+      "lhs": "dc_v",
+      "rhs": [
+        "DOLLAR_IDENT",
+        "SEMI"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "dc_f",
+      "rhs": [
+        "FUNCTION",
+        "IDENT",
+        "parametros",
+        "LBRACE",
+        "corpo_f",
+        "RBRACE"
+      ],
+      "rhsLen": 6
+    },
+    {
+      "lhs": "parametros",
+      "rhs": [
+        "LPAREN",
+        "lista_par",
+        "RPAREN"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "parametros",
+      "rhs": [
+        "LPAREN",
+        "RPAREN"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "lista_par",
+      "rhs": [
+        "DOLLAR_IDENT",
+        "mais_par"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "mais_par",
+      "rhs": [
+        "COMMA",
+        "DOLLAR_IDENT",
+        "mais_par"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "mais_par",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "corpo_f",
+      "rhs": [
+        "lista_dcloc",
+        "lista_comandos"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "lista_dcloc",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "lista_dcloc",
+      "rhs": [
+        "lista_dcloc",
+        "dc_v"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "lista_comandos",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "lista_comandos",
+      "rhs": [
+        "lista_comandos",
+        "comando"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "comando",
+      "rhs": [
+        "DOLLAR_IDENT",
+        "ASSIGN",
+        "expressao",
+        "SEMI"
+      ],
+      "rhsLen": 4
+    },
+    {
+      "lhs": "comando",
+      "rhs": [
+        "ECHO",
+        "DOLLAR_IDENT",
+        "DOT",
+        "PHP_EOL",
+        "SEMI"
+      ],
+      "rhsLen": 5
+    },
+    {
+      "lhs": "comando",
+      "rhs": [
+        "IF",
+        "LPAREN",
+        "condicao",
+        "RPAREN",
+        "LBRACE",
+        "lista_comandos",
+        "RBRACE",
+        "pfalsa"
+      ],
+      "rhsLen": 8
+    },
+    {
+      "lhs": "comando",
+      "rhs": [
+        "WHILE",
+        "LPAREN",
+        "condicao",
+        "RPAREN",
+        "LBRACE",
+        "lista_comandos",
+        "RBRACE"
+      ],
+      "rhsLen": 7
+    },
+    {
+      "lhs": "comando",
+      "rhs": [
+        "IDENT",
+        "lista_arg",
+        "SEMI"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "pfalsa",
+      "rhs": [
+        "ELSE",
+        "LBRACE",
+        "lista_comandos",
+        "RBRACE"
+      ],
+      "rhsLen": 4
+    },
+    {
+      "lhs": "pfalsa",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "lista_arg",
+      "rhs": [
+        "LPAREN",
+        "argumentos",
+        "RPAREN"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "lista_arg",
+      "rhs": [
+        "LPAREN",
+        "RPAREN"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "argumentos",
+      "rhs": [
+        "expressao",
+        "mais_ident"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "mais_ident",
+      "rhs": [
+        "COMMA",
+        "expressao",
+        "mais_ident"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "mais_ident",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "condicao",
+      "rhs": [
+        "expressao",
+        "relacao",
+        "expressao"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "EQ"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "NE"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "GE"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "LE"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "GT"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "relacao",
+      "rhs": [
+        "LT"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "expressao",
+      "rhs": [
+        "termo",
+        "outros_termos"
+      ],
+      "rhsLen": 2
+    },
+    {
+      "lhs": "termo",
+      "rhs": [
+        "op_un",
+        "fator",
+        "mais_fatores"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "op_un",
+      "rhs": [
+        "MINUS"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "op_un",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "fator",
+      "rhs": [
+        "DOLLAR_IDENT"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "fator",
+      "rhs": [
+        "NUM_REAL"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "fator",
+      "rhs": [
+        "LPAREN",
+        "expressao",
+        "RPAREN"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "fator",
+      "rhs": [
+        "FLOATVAL",
+        "LPAREN",
+        "READLINE",
+        "LPAREN",
+        "RPAREN",
+        "RPAREN"
+      ],
+      "rhsLen": 6
+    },
+    {
+      "lhs": "outros_termos",
+      "rhs": [
+        "op_ad",
+        "termo",
+        "outros_termos"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "outros_termos",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "op_ad",
+      "rhs": [
+        "PLUS"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "op_ad",
+      "rhs": [
+        "MINUS"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "mais_fatores",
+      "rhs": [
+        "op_mul",
+        "fator",
+        "mais_fatores"
+      ],
+      "rhsLen": 3
+    },
+    {
+      "lhs": "mais_fatores",
+      "rhs": [],
+      "rhsLen": 0
+    },
+    {
+      "lhs": "op_mul",
+      "rhs": [
+        "STAR"
+      ],
+      "rhsLen": 1
+    },
+    {
+      "lhs": "op_mul",
+      "rhs": [
+        "SLASH"
+      ],
+      "rhsLen": 1
+    }
+  ],
+  "action": {
+    "0": {
+      "PHP_OPEN": {
+        "type": "shift",
+        "to": 1
+      }
+    },
+    "1": {
+      "$default": {
+        "type": "reduce",
+        "rule": 3
+      }
+    },
+    "2": {
+      "EOF": {
+        "type": "shift",
+        "to": 5
+      }
+    },
+    "3": {
+      "PHP_CLOSE": {
+        "type": "shift",
+        "to": 6
+      }
+    },
+    "4": {
+      "FUNCTION": {
+        "type": "shift",
+        "to": 7
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 8
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 18
+      }
+    },
+    "5": {
+      "$default": {
+        "type": "accept"
+      }
+    },
+    "6": {
+      "$default": {
+        "type": "reduce",
+        "rule": 1
+      }
+    },
+    "7": {
+      "IDENT": {
+        "type": "shift",
+        "to": 13
+      }
+    },
+    "8": {
+      "SEMI": {
+        "type": "shift",
+        "to": 14
+      },
+      "ASSIGN": {
+        "type": "shift",
+        "to": 15
+      }
+    },
+    "9": {
+      "$default": {
+        "type": "reduce",
+        "rule": 4
+      }
+    },
+    "10": {
+      "$default": {
+        "type": "reduce",
+        "rule": 5
+      }
+    },
+    "11": {
+      "$default": {
+        "type": "reduce",
+        "rule": 6
+      }
+    },
+    "12": {
+      "IF": {
+        "type": "shift",
+        "to": 16
+      },
+      "WHILE": {
+        "type": "shift",
+        "to": 17
+      },
+      "ECHO": {
+        "type": "shift",
+        "to": 18
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 19
+      },
+      "IDENT": {
+        "type": "shift",
+        "to": 20
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 2
+      }
+    },
+    "13": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 22
+      }
+    },
+    "14": {
+      "$default": {
+        "type": "reduce",
+        "rule": 8
+      }
+    },
+    "15": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "16": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 28
+      }
+    },
+    "17": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 29
+      }
+    },
+    "18": {
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 30
+      }
+    },
+    "19": {
+      "ASSIGN": {
+        "type": "shift",
+        "to": 31
+      }
+    },
+    "20": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 32
+      }
+    },
+    "21": {
+      "$default": {
+        "type": "reduce",
+        "rule": 19
+      }
+    },
+    "22": {
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 34
+      },
+      "RPAREN": {
+        "type": "shift",
+        "to": 35
+      }
+    },
+    "23": {
+      "LBRACE": {
+        "type": "shift",
+        "to": 37
+      }
+    },
+    "24": {
+      "$default": {
+        "type": "reduce",
+        "rule": 41
+      }
+    },
+    "25": {
+      "SEMI": {
+        "type": "shift",
+        "to": 38
+      }
+    },
+    "26": {
+      "PLUS": {
+        "type": "shift",
+        "to": 39
+      },
+      "MINUS": {
+        "type": "shift",
+        "to": 40
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 48
+      }
+    },
+    "27": {
+      "FLOATVAL": {
+        "type": "shift",
+        "to": 43
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 44
+      },
+      "NUM_REAL": {
+        "type": "shift",
+        "to": 45
+      },
+      "LPAREN": {
+        "type": "shift",
+        "to": 46
+      }
+    },
+    "28": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "29": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "30": {
+      "DOT": {
+        "type": "shift",
+        "to": 51
+      }
+    },
+    "31": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "32": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 53
+      },
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "33": {
+      "SEMI": {
+        "type": "shift",
+        "to": 56
+      }
+    },
+    "34": {
+      "COMMA": {
+        "type": "shift",
+        "to": 57
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 14
+      }
+    },
+    "35": {
+      "$default": {
+        "type": "reduce",
+        "rule": 11
+      }
+    },
+    "36": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 59
+      }
+    },
+    "37": {
+      "$default": {
+        "type": "reduce",
+        "rule": 16
+      }
+    },
+    "38": {
+      "$default": {
+        "type": "reduce",
+        "rule": 7
+      }
+    },
+    "39": {
+      "$default": {
+        "type": "reduce",
+        "rule": 49
+      }
+    },
+    "40": {
+      "$default": {
+        "type": "reduce",
+        "rule": 50
+      }
+    },
+    "41": {
+      "$default": {
+        "type": "reduce",
+        "rule": 39
+      }
+    },
+    "42": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "43": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 63
+      }
+    },
+    "44": {
+      "$default": {
+        "type": "reduce",
+        "rule": 43
+      }
+    },
+    "45": {
+      "$default": {
+        "type": "reduce",
+        "rule": 44
+      }
+    },
+    "46": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "47": {
+      "STAR": {
+        "type": "shift",
+        "to": 65
+      },
+      "SLASH": {
+        "type": "shift",
+        "to": 66
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 52
+      }
+    },
+    "48": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 69
+      }
+    },
+    "49": {
+      "EQ": {
+        "type": "shift",
+        "to": 70
+      },
+      "NE": {
+        "type": "shift",
+        "to": 71
+      },
+      "GE": {
+        "type": "shift",
+        "to": 72
+      },
+      "LE": {
+        "type": "shift",
+        "to": 73
+      },
+      "GT": {
+        "type": "shift",
+        "to": 74
+      },
+      "LT": {
+        "type": "shift",
+        "to": 75
+      }
+    },
+    "50": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 77
+      }
+    },
+    "51": {
+      "PHP_EOL": {
+        "type": "shift",
+        "to": 78
+      }
+    },
+    "52": {
+      "SEMI": {
+        "type": "shift",
+        "to": 79
+      }
+    },
+    "53": {
+      "$default": {
+        "type": "reduce",
+        "rule": 28
+      }
+    },
+    "54": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 80
+      }
+    },
+    "55": {
+      "COMMA": {
+        "type": "shift",
+        "to": 81
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 31
+      }
+    },
+    "56": {
+      "$default": {
+        "type": "reduce",
+        "rule": 24
+      }
+    },
+    "57": {
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 83
+      }
+    },
+    "58": {
+      "$default": {
+        "type": "reduce",
+        "rule": 12
+      }
+    },
+    "59": {
+      "$default": {
+        "type": "reduce",
+        "rule": 10
+      }
+    },
+    "60": {
+      "RBRACE": {
+        "type": "shift",
+        "to": 84
+      }
+    },
+    "61": {
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 8
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 18
+      }
+    },
+    "62": {
+      "PLUS": {
+        "type": "shift",
+        "to": 39
+      },
+      "MINUS": {
+        "type": "shift",
+        "to": 40
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 48
+      }
+    },
+    "63": {
+      "READLINE": {
+        "type": "shift",
+        "to": 88
+      }
+    },
+    "64": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 89
+      }
+    },
+    "65": {
+      "$default": {
+        "type": "reduce",
+        "rule": 53
+      }
+    },
+    "66": {
+      "$default": {
+        "type": "reduce",
+        "rule": 54
+      }
+    },
+    "67": {
+      "$default": {
+        "type": "reduce",
+        "rule": 40
+      }
+    },
+    "68": {
+      "FLOATVAL": {
+        "type": "shift",
+        "to": 43
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 44
+      },
+      "NUM_REAL": {
+        "type": "shift",
+        "to": 45
+      },
+      "LPAREN": {
+        "type": "shift",
+        "to": 46
+      }
+    },
+    "69": {
+      "LBRACE": {
+        "type": "shift",
+        "to": 91
+      }
+    },
+    "70": {
+      "$default": {
+        "type": "reduce",
+        "rule": 33
+      }
+    },
+    "71": {
+      "$default": {
+        "type": "reduce",
+        "rule": 34
+      }
+    },
+    "72": {
+      "$default": {
+        "type": "reduce",
+        "rule": 35
+      }
+    },
+    "73": {
+      "$default": {
+        "type": "reduce",
+        "rule": 36
+      }
+    },
+    "74": {
+      "$default": {
+        "type": "reduce",
+        "rule": 37
+      }
+    },
+    "75": {
+      "$default": {
+        "type": "reduce",
+        "rule": 38
+      }
+    },
+    "76": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "77": {
+      "LBRACE": {
+        "type": "shift",
+        "to": 93
+      }
+    },
+    "78": {
+      "SEMI": {
+        "type": "shift",
+        "to": 94
+      }
+    },
+    "79": {
+      "$default": {
+        "type": "reduce",
+        "rule": 20
+      }
+    },
+    "80": {
+      "$default": {
+        "type": "reduce",
+        "rule": 27
+      }
+    },
+    "81": {
+      "MINUS": {
+        "type": "shift",
+        "to": 24
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 42
+      }
+    },
+    "82": {
+      "$default": {
+        "type": "reduce",
+        "rule": 29
+      }
+    },
+    "83": {
+      "COMMA": {
+        "type": "shift",
+        "to": 57
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 14
+      }
+    },
+    "84": {
+      "$default": {
+        "type": "reduce",
+        "rule": 9
+      }
+    },
+    "85": {
+      "$default": {
+        "type": "reduce",
+        "rule": 17
+      }
+    },
+    "86": {
+      "IF": {
+        "type": "shift",
+        "to": 16
+      },
+      "WHILE": {
+        "type": "shift",
+        "to": 17
+      },
+      "ECHO": {
+        "type": "shift",
+        "to": 18
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 19
+      },
+      "IDENT": {
+        "type": "shift",
+        "to": 20
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 15
+      }
+    },
+    "87": {
+      "$default": {
+        "type": "reduce",
+        "rule": 47
+      }
+    },
+    "88": {
+      "LPAREN": {
+        "type": "shift",
+        "to": 97
+      }
+    },
+    "89": {
+      "$default": {
+        "type": "reduce",
+        "rule": 45
+      }
+    },
+    "90": {
+      "STAR": {
+        "type": "shift",
+        "to": 65
+      },
+      "SLASH": {
+        "type": "shift",
+        "to": 66
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 52
+      }
+    },
+    "91": {
+      "$default": {
+        "type": "reduce",
+        "rule": 18
+      }
+    },
+    "92": {
+      "$default": {
+        "type": "reduce",
+        "rule": 32
+      }
+    },
+    "93": {
+      "$default": {
+        "type": "reduce",
+        "rule": 18
+      }
+    },
+    "94": {
+      "$default": {
+        "type": "reduce",
+        "rule": 21
+      }
+    },
+    "95": {
+      "COMMA": {
+        "type": "shift",
+        "to": 81
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 31
+      }
+    },
+    "96": {
+      "$default": {
+        "type": "reduce",
+        "rule": 13
+      }
+    },
+    "97": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 102
+      }
+    },
+    "98": {
+      "$default": {
+        "type": "reduce",
+        "rule": 51
+      }
+    },
+    "99": {
+      "IF": {
+        "type": "shift",
+        "to": 16
+      },
+      "WHILE": {
+        "type": "shift",
+        "to": 17
+      },
+      "ECHO": {
+        "type": "shift",
+        "to": 18
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 19
+      },
+      "IDENT": {
+        "type": "shift",
+        "to": 20
+      },
+      "RBRACE": {
+        "type": "shift",
+        "to": 103
+      }
+    },
+    "100": {
+      "IF": {
+        "type": "shift",
+        "to": 16
+      },
+      "WHILE": {
+        "type": "shift",
+        "to": 17
+      },
+      "ECHO": {
+        "type": "shift",
+        "to": 18
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 19
+      },
+      "IDENT": {
+        "type": "shift",
+        "to": 20
+      },
+      "RBRACE": {
+        "type": "shift",
+        "to": 104
+      }
+    },
+    "101": {
+      "$default": {
+        "type": "reduce",
+        "rule": 30
+      }
+    },
+    "102": {
+      "RPAREN": {
+        "type": "shift",
+        "to": 105
+      }
+    },
+    "103": {
+      "ELSE": {
+        "type": "shift",
+        "to": 106
+      },
+      "$default": {
+        "type": "reduce",
+        "rule": 26
+      }
+    },
+    "104": {
+      "$default": {
+        "type": "reduce",
+        "rule": 23
+      }
+    },
+    "105": {
+      "$default": {
+        "type": "reduce",
+        "rule": 46
+      }
+    },
+    "106": {
+      "LBRACE": {
+        "type": "shift",
+        "to": 108
+      }
+    },
+    "107": {
+      "$default": {
+        "type": "reduce",
+        "rule": 22
+      }
+    },
+    "108": {
+      "$default": {
+        "type": "reduce",
+        "rule": 18
+      }
+    },
+    "109": {
+      "IF": {
+        "type": "shift",
+        "to": 16
+      },
+      "WHILE": {
+        "type": "shift",
+        "to": 17
+      },
+      "ECHO": {
+        "type": "shift",
+        "to": 18
+      },
+      "DOLLAR_IDENT": {
+        "type": "shift",
+        "to": 19
+      },
+      "IDENT": {
+        "type": "shift",
+        "to": 20
+      },
+      "RBRACE": {
+        "type": "shift",
+        "to": 110
+      }
+    },
+    "110": {
+      "$default": {
+        "type": "reduce",
+        "rule": 25
+      }
+    }
+  },
+  "goto": {
+    "0": {
+      "programa": 2
+    },
+    "1": {
+      "corpo": 3,
+      "lista_dc": 4
+    },
+    "2": {},
+    "3": {},
+    "4": {
+      "declaracao": 9,
+      "dc_v": 10,
+      "dc_f": 11,
+      "lista_comandos": 12
+    },
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {},
+    "10": {},
+    "11": {},
+    "12": {
+      "comando": 21
+    },
+    "13": {
+      "parametros": 23
+    },
+    "14": {},
+    "15": {
+      "expressao": 25,
+      "termo": 26,
+      "op_un": 27
+    },
+    "16": {},
+    "17": {},
+    "18": {},
+    "19": {},
+    "20": {
+      "lista_arg": 33
+    },
+    "21": {},
+    "22": {
+      "lista_par": 36
+    },
+    "23": {},
+    "24": {},
+    "25": {},
+    "26": {
+      "outros_termos": 41,
+      "op_ad": 42
+    },
+    "27": {
+      "fator": 47
+    },
+    "28": {
+      "condicao": 48,
+      "expressao": 49,
+      "termo": 26,
+      "op_un": 27
+    },
+    "29": {
+      "condicao": 50,
+      "expressao": 49,
+      "termo": 26,
+      "op_un": 27
+    },
+    "30": {},
+    "31": {
+      "expressao": 52,
+      "termo": 26,
+      "op_un": 27
+    },
+    "32": {
+      "argumentos": 54,
+      "expressao": 55,
+      "termo": 26,
+      "op_un": 27
+    },
+    "33": {},
+    "34": {
+      "mais_par": 58
+    },
+    "35": {},
+    "36": {},
+    "37": {
+      "corpo_f": 60,
+      "lista_dcloc": 61
+    },
+    "38": {},
+    "39": {},
+    "40": {},
+    "41": {},
+    "42": {
+      "termo": 62,
+      "op_un": 27
+    },
+    "43": {},
+    "44": {},
+    "45": {},
+    "46": {
+      "expressao": 64,
+      "termo": 26,
+      "op_un": 27
+    },
+    "47": {
+      "mais_fatores": 67,
+      "op_mul": 68
+    },
+    "48": {},
+    "49": {
+      "relacao": 76
+    },
+    "50": {},
+    "51": {},
+    "52": {},
+    "53": {},
+    "54": {},
+    "55": {
+      "mais_ident": 82
+    },
+    "56": {},
+    "57": {},
+    "58": {},
+    "59": {},
+    "60": {},
+    "61": {
+      "dc_v": 85,
+      "lista_comandos": 86
+    },
+    "62": {
+      "outros_termos": 87,
+      "op_ad": 42
+    },
+    "63": {},
+    "64": {},
+    "65": {},
+    "66": {},
+    "67": {},
+    "68": {
+      "fator": 90
+    },
+    "69": {},
+    "70": {},
+    "71": {},
+    "72": {},
+    "73": {},
+    "74": {},
+    "75": {},
+    "76": {
+      "expressao": 92,
+      "termo": 26,
+      "op_un": 27
+    },
+    "77": {},
+    "78": {},
+    "79": {},
+    "80": {},
+    "81": {
+      "expressao": 95,
+      "termo": 26,
+      "op_un": 27
+    },
+    "82": {},
+    "83": {
+      "mais_par": 96
+    },
+    "84": {},
+    "85": {},
+    "86": {
+      "comando": 21
+    },
+    "87": {},
+    "88": {},
+    "89": {},
+    "90": {
+      "mais_fatores": 98,
+      "op_mul": 68
+    },
+    "91": {
+      "lista_comandos": 99
+    },
+    "92": {},
+    "93": {
+      "lista_comandos": 100
+    },
+    "94": {},
+    "95": {
+      "mais_ident": 101
+    },
+    "96": {},
+    "97": {},
+    "98": {},
+    "99": {
+      "comando": 21
+    },
+    "100": {
+      "comando": 21
+    },
+    "101": {},
+    "102": {},
+    "103": {
+      "pfalsa": 107
+    },
+    "104": {},
+    "105": {},
+    "106": {},
+    "107": {},
+    "108": {
+      "lista_comandos": 109
+    },
+    "109": {
+      "comando": 21
+    },
+    "110": {}
+  }
+}

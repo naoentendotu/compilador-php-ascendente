@@ -1,0 +1,35 @@
+    <programa> -> <?php <corpo> ?>
+    <corpo> -> <dc> <comandos>
+    <dc> -> <dc_v> <mais_dc> | <dc_f> <mais_dc_f> | λ
+    <mais_dc> -> <dc> | λ
+    <mais_dc_f> -> <dc_f> | λ
+    <dc_v> -> $ident <atribuicao_opcional>
+    <atribuicao_opcional> -> = <expressao> ; | ;
+    <dc_f> -> function ident <parametros> { <corpo_f> }
+    <parametros> -> ( <lista_par> ) | ( )
+    <lista_par> -> $ident <mais_par>
+    <mais_par> -> , $ident <mais_par> | λ
+    <corpo_f> -> <dc_loc> <comandos>
+    <dc_loc> -> <dc_v> <mais_dcloc> | λ
+    <mais_dcloc> -> <dc_loc> | λ
+    <lista_arg> -> ( <argumentos> ) | ( )
+    <argumentos> -> <expressao> <mais_ident>
+    <mais_ident> -> , <expressao> <mais_ident> | λ
+    <comandos> -> <comando> <mais_comandos>
+    <mais_comandos> -> <comandos> | λ
+    <comando> ->  echo $ident . PHP_EOL; |
+                if ( <condicao> ) { <comandos> } <pfalsa> |
+                while ( <condicao> ) { <comandos> } |
+                $ident <restoIdent> ;
+    <restoIdent> -> = <expressao> | <lista_arg>
+    <condicao> -> <expressao> <relacao> <expressao>
+    <relacao> -> == | != | >= | <= | > | <
+    <expressao> -> <termo> <outros_termos> | floatval(readline());
+    <termo> -> <op_un> <fator> <mais_fatores>
+    <op_un> -> - | λ
+    <fator> -> $ident | numero_real | ( <expressao> )
+    <outros_termos> -> <op_ad> <termo> <outros_termos> | λ
+    <op_ad> -> + | -
+    <mais_fatores> -> <op_mul> <fator> <mais_fatores> | λ
+    <op_mul> -> * | /
+    <pfalsa> -> else { <comandos> } | λ
