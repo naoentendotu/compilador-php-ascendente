@@ -44,7 +44,7 @@ node tools/bison_output_to_json.js grammar/grammar.output outputs/lr_table.json
 
 O arquivo outputs/lr_table.json resultante é consumido diretamente pelo parser (ParserLR.js) durante o processo de compilação.
 
-[!TIP] Alguns avisos de shift/reduce podem aparecer durante a execução do Bison; eles são esperados e tratados corretamente pela lógica da gramática implementada.
+> **Nota:** Alguns avisos de _shift/reduce_ podem aparecer durante a execução do Bison; eles são esperados e tratados corretamente pela lógica da gramática implementada.
 
 ---
 
