@@ -22,6 +22,32 @@ Este projeto implementa:
 
 ---
 
+## Geração da Tabela LR (Resumo)
+
+A análise sintática do compilador é **LR (ascendente)**. A tabela LR é gerada automaticamente a partir da gramática (grammar/grammar.y) utilizando o Bison.
+
+### Processo de Geração
+
+Bison: O Bison gera o arquivo grammar/grammar.output, que contém os estados, ações SHIFT/REDUCE e GOTO:
+
+```bash
+bison -v --report-file=grammar/grammar.output grammar/grammar.y
+
+```
+
+Conversão: O arquivo gerado é convertido para JSON pelo script dedicado:
+
+```bash
+node tools/bison_output_to_json.js grammar/grammar.output outputs/lr_table.json
+
+```
+
+O arquivo outputs/lr_table.json resultante é consumido diretamente pelo parser (ParserLR.js) durante o processo de compilação.
+
+[!TIP] Alguns avisos de shift/reduce podem aparecer durante a execução do Bison; eles são esperados e tratados corretamente pela lógica da gramática implementada.
+
+---
+
 # Parte 1 — Compilar (Gerar código objeto)
 
 ## 1) Compilar um programa de entrada
