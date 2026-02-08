@@ -22,7 +22,7 @@ Este projeto implementa:
 
 ---
 
-## Geração da Tabela LR (Resumo)
+## Geração da Tabela LR
 
 A análise sintática do compilador é **LR (ascendente)**. A tabela LR é gerada automaticamente a partir da gramática (grammar/grammar.y) utilizando o Bison.
 
